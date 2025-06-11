@@ -15,5 +15,17 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  },
+  // Ensure SPA routing works in production
+  preview: {
+    port: 5173,
+    host: true
   }
 })
