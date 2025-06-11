@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Razorpay Integration</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #3B82F6;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #2563EB;
+        }
+        .info {
+            background: #EBF8FF;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3B82F6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Razorpay Integration Test</h1>
+        
+        <div class="info">
+            <h3>Test Credentials:</h3>
+            <p><strong>Key ID:</strong> rzp_test_DGf9MYPa17Bcyd</p>
+            <p><strong>Test Amount:</strong> ₹100.00</p>
+        </div>
+
+        <h3>Order Details:</h3>
+        <p><strong>Product:</strong> Test Product</p>
+        <p><strong>Amount:</strong> ₹100.00</p>
+        <p><strong>Currency:</strong> INR</p>
+
+        <button onclick="payWithRazorpay()">Pay with Razorpay</button>
+
+        <div id="result" style="margin-top: 20px; padding: 15px; border-radius: 5px; display: none;"></div>
+    </div>
+
+    <script>
+        function payWithRazorpay() {
+            const options = {
+                key: 'rzp_test_DGf9MYPa17Bcyd', // Your Razorpay key ID
+                amount: 10000, // Amount in paise (₹100.00)
+                currency: 'INR',
+                name: 'ShopEase',
+                description: 'Test Transaction',
+                image: '/favicon.ico',
+                order_id: 'order_test_' + Date.now(), // This should come from your backend
+                handler: function (response) {
+                    showResult('success', 'Payment Successful!', {
+                        'Payment ID': response.razorpay_payment_id,
+                        'Order ID': response.razorpay_order_id,
+                        'Signature': response.razorpay_signature
+                    });
+                },
+                prefill: {
+                    name: 'Test User',
+                    email: 'test@example.com',
+                    contact: '9999999999'
+                },
+                notes: {
+                    address: 'Test Address'
+                },
+                theme: {
+                    color: '#3B82F6'
+                },
+                modal: {
+                    ondismiss: function() {
+                        showResult('error', 'Payment cancelled by user', {});
+                    }
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+
+        function showResult(type, message, details) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            
+            if (type === 'success') {
+                resultDiv.style.backgroundColor = '#D1FAE5';
+                resultDiv.style.color = '#065F46';
+                resultDiv.style.border = '1px solid #10B981';
+            } else {
+                resultDiv.style.backgroundColor = '#FEE2E2';
+                resultDiv.style.color = '#991B1B';
+                resultDiv.style.border = '1px solid #EF4444';
+            }
+
+            let html = `<h4>${message}</h4>`;
+            for (const [key, value] of Object.entries(details)) {
+                html += `<p><strong>${key}:</strong> ${value}</p>`;
+            }
+            resultDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
