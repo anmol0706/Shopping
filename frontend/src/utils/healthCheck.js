@@ -1,3 +1,4 @@
+import axios from 'axios';
 import api from './api';
 
 /**
@@ -6,13 +7,18 @@ import api from './api';
  */
 export const checkBackendHealth = async () => {
   try {
-    // Try to reach the health endpoint with a short timeout
-    const response = await api.get('/health', { 
+    // Create a direct axios instance without the /api prefix for health check
+    const healthApi = axios.create({
+      baseURL: import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://shopping-backend-7mgn.onrender.com',
       timeout: 5000,
-      // Don't include auth headers for health check
-      headers: {}
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
-    
+
+    // Try to reach the health endpoint
+    const response = await healthApi.get('/health');
+
     return response.status === 200;
   } catch (error) {
     // Log only in development
@@ -52,11 +58,17 @@ export const checkBackendHealthWithRetry = async (maxRetries = 3, delay = 2000) 
  */
 export const getBackendStatus = async () => {
   try {
-    const response = await api.get('/health', { 
+    // Create a direct axios instance without the /api prefix for health check
+    const healthApi = axios.create({
+      baseURL: import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://shopping-backend-7mgn.onrender.com',
       timeout: 5000,
-      headers: {}
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
-    
+
+    const response = await healthApi.get('/health');
+
     return {
       status: 'online',
       data: response.data,

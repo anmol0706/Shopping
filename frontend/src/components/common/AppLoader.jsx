@@ -79,23 +79,26 @@ const AppLoader = ({ isLoading, onRetry }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-4"
+            className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-4"
           >
             <div className="flex items-center justify-center mb-2">
-              <WifiOff className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mr-2" />
-              <span className="text-sm font-medium text-yellow-800 dark:text-yellow-200">
-                Connection Issue
+              <WifiOff className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" />
+              <span className="text-sm font-medium text-blue-800 dark:text-blue-200">
+                Server Starting Up
               </span>
             </div>
-            <p className="text-sm text-yellow-700 dark:text-yellow-300 mb-3">
-              Taking longer than expected to connect. This might be due to server startup time.
+            <p className="text-sm text-blue-700 dark:text-blue-300 mb-3">
+              The server is starting up. This can take 30-60 seconds on first load. Please wait...
             </p>
+            <div className="text-xs text-blue-600 dark:text-blue-400 mb-3">
+              ⏱️ This is normal for cloud-hosted applications
+            </div>
             <button
               onClick={onRetry}
-              className="flex items-center justify-center gap-2 w-full bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg transition-colors text-sm"
+              className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors text-sm"
             >
               <RefreshCw className="h-4 w-4" />
-              Retry Connection
+              Check Again
             </button>
           </motion.div>
         )}
