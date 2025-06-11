@@ -35,25 +35,23 @@ const Orders = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showOrderDetails, setShowOrderDetails] = useState(false);
 
-  // Fetch orders
+  // Fetch orders - FIXED: Removed Date.now() from queryKey to prevent infinite loop
   const { data: ordersData, isLoading, error, refetch } = useQuery({
-    queryKey: ['orders', currentPage, statusFilter, searchTerm, Date.now()],
+    queryKey: ['orders', currentPage, statusFilter, searchTerm],
     queryFn: async () => {
       const params = new URLSearchParams();
       params.append('page', currentPage);
       params.append('limit', '10');
-      params.append('_t', Date.now()); // Add timestamp to prevent caching
       if (statusFilter) params.append('status', statusFilter);
 
       const response = await api.get(`/orders?${params}`);
-      console.log('Frontend received orders data:', response.data);
+      console.log('✅ Orders API call successful:', response.data);
       return response.data;
     },
     enabled: !!user,
-    staleTime: 0, // Always fetch fresh data
-    cacheTime: 0, // Don't cache the data
+    staleTime: 5 * 60 * 1000, // 5 minutes
     refetchOnMount: true,
-    refetchOnWindowFocus: true
+    refetchOnWindowFocus: false
   });
 
   // Fetch single order details
