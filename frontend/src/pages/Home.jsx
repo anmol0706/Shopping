@@ -1134,12 +1134,18 @@ const Home = () => {
             {/* Horizontal scrolling categories */}
             <div className="relative w-full">
               <div
-                className="flex overflow-x-auto gap-4 sm:gap-6 pb-4 px-2"
+                className="flex overflow-x-auto gap-4 sm:gap-6 pb-4 px-2 mobile-scroll-container"
                 style={{
-                  scrollbarWidth: 'none',
-                  msOverflowStyle: 'none',
-                  WebkitScrollbar: 'none'
+                  scrollbarWidth: 'none !important',
+                  msOverflowStyle: 'none !important',
+                  WebkitScrollbar: 'none !important',
+                  overflowX: 'auto',
+                  overflowY: 'hidden',
+                  cursor: 'grab'
                 }}
+                onMouseDown={(e) => e.currentTarget.style.cursor = 'grabbing'}
+                onMouseUp={(e) => e.currentTarget.style.cursor = 'grab'}
+                onMouseLeave={(e) => e.currentTarget.style.cursor = 'grab'}
               >
                 {[
                   {
@@ -1333,16 +1339,16 @@ const Home = () => {
               </p>
             </motion.div>
 
-            {/* Horizontal scrolling products */}
+            {/* Enhanced Horizontal scrolling products */}
             <div className="relative w-full">
-              <div className="mobile-product-grid mobile-scroll-container flex overflow-x-auto gap-3 sm:gap-4 lg:gap-6 pb-4 px-2 mobile-touch-friendly">
+              <div className="mobile-product-grid mobile-scroll-container mobile-momentum-scroll flex overflow-x-auto gap-3 sm:gap-4 lg:gap-6 pb-4 px-2 mobile-touch-friendly">
                 {products.slice(0, 10).map((product, index) => (
                   <motion.div
                     key={product._id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-64 mobile-scroll-item"
+                    className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-64 mobile-scroll-item mobile-optimized"
                   >
                     <ProductCard product={product} />
                   </motion.div>
@@ -1393,9 +1399,9 @@ const Home = () => {
               </p>
             </motion.div>
 
-            {/* Horizontal scrolling products */}
+            {/* Enhanced Horizontal scrolling products */}
             <div className="relative w-full">
-              <div className="mobile-product-grid mobile-scroll-container flex overflow-x-auto gap-3 sm:gap-4 lg:gap-6 pb-4 px-2 mobile-touch-friendly">
+              <div className="mobile-product-grid mobile-scroll-container mobile-momentum-scroll flex overflow-x-auto gap-3 sm:gap-4 lg:gap-6 pb-4 px-2 mobile-touch-friendly">
                 {(distributedProducts.bestSellers && distributedProducts.bestSellers.length > 0
                   ? distributedProducts.bestSellers
                   : products.slice(0, 6)
@@ -1405,7 +1411,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-64 mobile-scroll-item"
+                    className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-64 mobile-scroll-item mobile-optimized"
                   >
                     <ProductCard product={product} />
                   </motion.div>
@@ -1456,9 +1462,9 @@ const Home = () => {
               </p>
             </motion.div>
 
-            {/* Horizontal scrolling products */}
+            {/* Enhanced Horizontal scrolling products */}
             <div className="relative w-full">
-              <div className="mobile-product-grid mobile-scroll-container flex overflow-x-auto gap-3 sm:gap-4 lg:gap-6 pb-4 px-2 mobile-touch-friendly">
+              <div className="mobile-product-grid mobile-scroll-container mobile-momentum-scroll flex overflow-x-auto gap-3 sm:gap-4 lg:gap-6 pb-4 px-2 mobile-touch-friendly">
                 {(distributedProducts.newArrivals && distributedProducts.newArrivals.length > 0
                   ? distributedProducts.newArrivals
                   : products.slice(6, 12)
@@ -1468,7 +1474,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-64 mobile-scroll-item"
+                    className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-64 mobile-scroll-item mobile-optimized"
                   >
                     <ProductCard product={product} />
                   </motion.div>
@@ -1515,7 +1521,7 @@ const Home = () => {
 
             {/* Horizontal scrolling products */}
             <div className="relative w-full">
-              <div className="mobile-product-grid mobile-scroll-container flex overflow-x-auto gap-3 sm:gap-4 lg:gap-6 pb-4 px-2 mobile-touch-friendly">
+              <div className="mobile-product-grid mobile-scroll-container mobile-momentum-scroll flex overflow-x-auto gap-3 sm:gap-4 lg:gap-6 pb-4 px-2 mobile-touch-friendly">
                 {(distributedProducts.trending && distributedProducts.trending.length > 0
                   ? distributedProducts.trending
                   : products.slice(3, 9)
@@ -1525,7 +1531,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-64 mobile-scroll-item"
+                    className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-64 mobile-scroll-item mobile-optimized"
                   >
                     <ProductCard product={product} />
                   </motion.div>

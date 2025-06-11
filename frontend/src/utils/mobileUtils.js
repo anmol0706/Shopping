@@ -56,23 +56,60 @@ export const getViewportDimensions = () => {
 };
 
 /**
- * Optimize touch events for mobile
+ * Enhanced optimize touch events for mobile
  * @param {HTMLElement} element - Element to optimize
+ * @param {object} options - Optimization options
  */
-export const optimizeTouchEvents = (element) => {
+export const optimizeTouchEvents = (element, options = {}) => {
   if (!element || !isTouchDevice()) return;
 
-  // Prevent 300ms click delay
+  const {
+    enableScale = true,
+    enableOpacity = false,
+    scaleValue = 0.98,
+    highlightColor = 'rgba(59, 130, 246, 0.1)'
+  } = options;
+
+  // Prevent 300ms click delay and optimize touch
   element.style.touchAction = 'manipulation';
-  
-  // Add touch feedback
-  element.addEventListener('touchstart', () => {
-    element.style.opacity = '0.8';
-  }, { passive: true });
-  
-  element.addEventListener('touchend', () => {
-    element.style.opacity = '1';
-  }, { passive: true });
+  element.style.webkitTapHighlightColor = highlightColor;
+  element.style.userSelect = 'none';
+  element.style.webkitUserSelect = 'none';
+
+  // Add hardware acceleration
+  element.style.transform = 'translateZ(0)';
+  element.style.willChange = 'transform';
+
+  // Enhanced touch feedback
+  const handleTouchStart = () => {
+    if (enableScale) {
+      element.style.transform = `translateZ(0) scale(${scaleValue})`;
+      element.style.transition = 'transform 0.1s ease';
+    }
+    if (enableOpacity) {
+      element.style.opacity = '0.8';
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (enableScale) {
+      element.style.transform = 'translateZ(0) scale(1)';
+    }
+    if (enableOpacity) {
+      element.style.opacity = '1';
+    }
+  };
+
+  element.addEventListener('touchstart', handleTouchStart, { passive: true });
+  element.addEventListener('touchend', handleTouchEnd, { passive: true });
+  element.addEventListener('touchcancel', handleTouchEnd, { passive: true });
+
+  // Return cleanup function
+  return () => {
+    element.removeEventListener('touchstart', handleTouchStart);
+    element.removeEventListener('touchend', handleTouchEnd);
+    element.removeEventListener('touchcancel', handleTouchEnd);
+  };
 };
 
 /**

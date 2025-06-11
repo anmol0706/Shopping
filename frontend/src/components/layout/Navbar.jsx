@@ -48,9 +48,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-lg border-b border-white/20 md:block mobile-glass">
+    <nav className="sticky top-0 z-50 bg-white/85 backdrop-blur-md shadow-lg border-b border-white/20 md:block mobile-glass-strong mobile-safe-area-top">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14 sm:h-16">
+        <div className="flex justify-between items-center h-14 sm:h-16 mobile-touch-friendly">
           {/* Logo - Mobile Optimized */}
           <Link to="/" className="flex items-center space-x-2 nav-touch-target">
             <motion.div

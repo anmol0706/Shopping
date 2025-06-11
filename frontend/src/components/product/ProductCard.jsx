@@ -41,8 +41,9 @@ const ProductCard = ({ product }) => {
   return (
     <motion.div
       whileHover={{ y: -5 }}
+      whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.3 }}
-      className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow w-full mobile-product-card flex-shrink-0"
+      className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 w-full mobile-product-card flex-shrink-0 mobile-touch-friendly"
     >
         {/* Image Container */}
         <div className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-700 product-image">
@@ -88,14 +89,14 @@ const ProductCard = ({ product }) => {
             <button
               onClick={handleAddToCart}
               disabled={isAddingToCart || product.stock === 0}
-              className="p-2 md:p-3 bg-white text-gray-900 rounded-full hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed nav-touch-target"
+              className="p-2 md:p-3 bg-white text-gray-900 rounded-full hover:bg-gray-100 active:bg-gray-200 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed nav-touch-target mobile-touch-feedback"
               title="Add to Cart"
             >
               <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" />
             </button>
             <Link
               to={`/products/${product._id}`}
-              className="p-2 md:p-3 bg-white text-gray-900 rounded-full hover:bg-gray-100 transition-colors nav-touch-target"
+              className="p-2 md:p-3 bg-white text-gray-900 rounded-full hover:bg-gray-100 active:bg-gray-200 transition-all duration-200 nav-touch-target mobile-touch-feedback"
               title="Quick View"
             >
               <Eye className="w-4 h-4 md:w-5 md:h-5" />

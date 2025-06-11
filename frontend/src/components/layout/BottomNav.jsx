@@ -288,15 +288,18 @@ const BottomNav = () => {
         )}
       </AnimatePresence>
 
-      {/* Bottom Navigation */}
+      {/* Enhanced Bottom Navigation */}
       <motion.nav
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="fixed bottom-0 left-0 right-0 bottom-nav-gradient backdrop-blur-xl border-t border-gray-200/50 z-30 md:hidden shadow-2xl"
+        className="fixed bottom-0 left-0 right-0 bottom-nav-gradient backdrop-blur-xl border-t border-gray-200/50 z-30 md:hidden shadow-2xl mobile-glass-strong"
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/15 to-transparent pointer-events-none" />
 
-        <div className="relative flex items-center justify-around px-1 py-2 safe-area-bottom">
+        {/* Enhanced glass morphism overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-50/10 via-transparent to-transparent pointer-events-none" />
+
+        <div className="relative flex items-center justify-around px-1 py-2 safe-area-bottom mobile-touch-friendly">
           {navItems.map((item, index) => {
             const Icon = item.icon;
             const isItemActive = item.isActive;
@@ -314,10 +317,10 @@ const BottomNav = () => {
                 {item.hasDropdown ? (
                   <button
                     onClick={item.action}
-                    className={`relative w-full flex flex-col items-center justify-center py-3 px-2 rounded-2xl transition-all duration-300 nav-touch-target ${
+                    className={`relative w-full flex flex-col items-center justify-center py-3 px-2 rounded-2xl transition-all duration-300 nav-touch-target mobile-touch-feedback ${
                       isItemActive
-                        ? 'text-blue-600 bg-blue-50/80 shadow-lg'
-                        : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50/50'
+                        ? 'text-blue-600 bg-blue-50/80 shadow-lg mobile-glass-light'
+                        : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50/50 active:bg-gray-100/60'
                     }`}
                   >
                     {/* Active background glow */}
@@ -358,10 +361,10 @@ const BottomNav = () => {
                 ) : (
                   <Link
                     to={item.path}
-                    className={`relative w-full flex flex-col items-center justify-center py-3 px-2 rounded-2xl transition-all duration-300 nav-touch-target ${
+                    className={`relative w-full flex flex-col items-center justify-center py-3 px-2 rounded-2xl transition-all duration-300 nav-touch-target mobile-touch-feedback ${
                       isItemActive
-                        ? 'text-blue-600 bg-blue-50/80 shadow-lg'
-                        : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50/50'
+                        ? 'text-blue-600 bg-blue-50/80 shadow-lg mobile-glass-light'
+                        : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50/50 active:bg-gray-100/60'
                     }`}
                   >
                     {/* Active background glow */}
