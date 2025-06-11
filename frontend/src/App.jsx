@@ -33,6 +33,7 @@ import { StripeProvider } from './contexts/StripeContext';
 // Protected Route Component
 import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminRoute from './components/common/AdminRoute';
+import ErrorBoundary from './components/common/ErrorBoundary';
 
 // Create a client
 const queryClient = new QueryClient({
@@ -40,6 +41,22 @@ const queryClient = new QueryClient({
     queries: {
       retry: 1,
       refetchOnWindowFocus: false,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      cacheTime: 10 * 60 * 1000, // 10 minutes
+      onError: (error) => {
+        // Only log errors in development
+        if (import.meta.env.DEV) {
+          console.error('Query error:', error);
+        }
+      },
+    },
+    mutations: {
+      onError: (error) => {
+        // Only log errors in development
+        if (import.meta.env.DEV) {
+          console.error('Mutation error:', error);
+        }
+      },
     },
   },
 });
@@ -48,11 +65,12 @@ function App() {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <AuthProvider>
-            <CartProvider>
-              <WishlistProvider>
-                <StripeProvider>
+        <ErrorBoundary>
+          <ThemeProvider>
+            <AuthProvider>
+              <CartProvider>
+                <WishlistProvider>
+                  <StripeProvider>
                   <Router
                     future={{
                       v7_startTransition: true,
@@ -125,6 +143,7 @@ function App() {
             </CartProvider>
           </AuthProvider>
         </ThemeProvider>
+        </ErrorBoundary>
       </QueryClientProvider>
     </HelmetProvider>
   );

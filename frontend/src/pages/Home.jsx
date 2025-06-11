@@ -24,10 +24,10 @@ import LifestyleBanner from '../components/promotional/LifestyleBanner';
 import SpecialOffers from '../components/promotional/SpecialOffers';
 import api from '../utils/api';
 
-// Import Cloudinary images (replace djd7um7 with your actual Cloudinary cloud name)
-const s24Image = 'https://res.cloudinary.com/djd7um7/image/upload/v1/shopease/products/electronics/smartphones/samsung-s24.png';
-const airpodsImage = 'https://res.cloudinary.com/djd7um7/image/upload/v1/shopease/products/electronics/accessories/airpods.png';
-const appleWatchImage = 'https://res.cloudinary.com/djd7um7/image/upload/v1/shopease/products/electronics/accessories/apple-watch.png';
+// Import Cloudinary images using the correct cloud name
+const s24Image = 'https://res.cloudinary.com/jarvis/image/upload/v1/shopease/products/electronics/smartphones/samsung-s24.png';
+const airpodsImage = 'https://res.cloudinary.com/jarvis/image/upload/v1/shopease/products/electronics/accessories/airpods.png';
+const appleWatchImage = 'https://res.cloudinary.com/jarvis/image/upload/v1/shopease/products/electronics/accessories/apple-watch.png';
 
 const Home = () => {
   // Navigation

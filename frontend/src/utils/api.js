@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5001/api',
+  baseURL: import.meta.env.VITE_API_URL || 'https://shopping-backend-7mgn.onrender.com/api',
   timeout: 30000, // Increased timeout for production
   headers: {
     'Content-Type': 'application/json',
@@ -30,12 +30,18 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.error('API Error:', error);
+    // Only log errors in development to reduce console noise in production
+    if (import.meta.env.DEV) {
+      console.error('API Error:', error);
+    }
 
     // Handle 401 errors (unauthorized)
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
-      window.location.href = '/login';
+      // Only redirect if not already on login page
+      if (!window.location.pathname.includes('/login')) {
+        window.location.href = '/login';
+      }
     }
 
     // Handle network errors
@@ -44,6 +50,8 @@ api.interceptors.response.use(
         error.message = 'Request timeout. Please try again.';
       } else if (error.code === 'ERR_NETWORK') {
         error.message = 'Network error. Please check your connection and try again.';
+      } else if (error.code === 'ENOTFOUND') {
+        error.message = 'Server not found. Please try again later.';
       } else {
         error.message = 'Unable to connect to server. Please try again later.';
       }
@@ -54,6 +62,11 @@ api.interceptors.response.use(
       error.message = 'Server error. Please try again later.';
     }
 
+    // Handle CORS errors
+    if (error.message?.includes('CORS') || error.message?.includes('cross-origin')) {
+      error.message = 'Connection error. Please refresh the page and try again.';
+    }
+
     return Promise.reject(error);
   }
 );
@@ -62,11 +75,16 @@ api.interceptors.response.use(
 export const testConnection = async () => {
   try {
     const response = await api.get('/health');
-    console.log('✅ API Connection successful:', response.data);
+    if (import.meta.env.DEV) {
+      console.log('✅ API Connection successful:', response.data);
+    }
     return response.data;
   } catch (error) {
-    console.error('❌ API Connection failed:', error);
-    throw error;
+    if (import.meta.env.DEV) {
+      console.error('❌ API Connection failed:', error.message);
+    }
+    // Don't throw error to prevent app crashes
+    return { status: 'error', message: error.message };
   }
 };
 
