@@ -21,7 +21,7 @@ import Orders from './pages/Orders';
 import Wishlist from './pages/Wishlist';
 import AdminPanel from './pages/admin/AdminPanel';
 import NotFound from './pages/NotFound';
-import MobileTest from './pages/MobileTest';
+
 
 // Providers
 import { AuthProvider } from './contexts/AuthContext';
@@ -71,8 +71,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
 
-                        {/* Development/Testing Routes */}
-                        <Route path="/mobile-test" element={<MobileTest />} />
+
 
                         {/* Checkout Route - Allow guest checkout */}
                         <Route path="/checkout" element={<Checkout />} />
