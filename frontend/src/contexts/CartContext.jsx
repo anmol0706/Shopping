@@ -74,7 +74,7 @@ export const CartProvider = ({ children }) => {
     if (user && serverCart && localCart.length > 0) {
       syncCartMutation.mutate();
     }
-  }, [user, serverCart, localCart.length]);
+  }, [user, serverCart, localCart.length, syncCartMutation]);
 
   // Add to cart mutation
   const addToCartMutation = useMutation({

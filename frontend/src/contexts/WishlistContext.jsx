@@ -74,7 +74,7 @@ export const WishlistProvider = ({ children }) => {
     if (user && serverWishlist && localWishlist.length > 0) {
       syncWishlistMutation.mutate();
     }
-  }, [user, serverWishlist, localWishlist.length]);
+  }, [user, serverWishlist, localWishlist.length, syncWishlistMutation]);
 
   // Add to wishlist mutation
   const addToWishlistMutation = useMutation({
