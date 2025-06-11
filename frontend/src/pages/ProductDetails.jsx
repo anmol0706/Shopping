@@ -57,8 +57,9 @@ const ProductDetails = () => {
   const { data: relatedProducts } = useQuery({
     queryKey: ['products', 'related', product?.category],
     queryFn: async () => {
+      if (!product?.category) return [];
       const response = await api.get(`/products?category=${product.category}&limit=4`);
-      return response.data.products.filter(p => p._id !== id);
+      return response.data.products?.filter(p => p._id !== id) || [];
     },
     enabled: !!product?.category
   });
@@ -72,6 +73,8 @@ const ProductDetails = () => {
   };
 
   const handleQuantityChange = (change) => {
+    if (!product?.stock) return;
+
     const newQuantity = quantity + change;
     if (newQuantity >= 1 && newQuantity <= product.stock) {
       setQuantity(newQuantity);
@@ -86,6 +89,8 @@ const ProductDetails = () => {
   };
 
   const calculatePrice = () => {
+    if (!product?.price) return 0;
+
     let basePrice = product.price;
 
     // Add variant price modifications
@@ -136,6 +141,7 @@ const ProductDetails = () => {
     );
   }
 
+  // Only calculate price and images after confirming product exists
   const currentPrice = calculatePrice();
   const images = product.images || [{ url: 'https://via.placeholder.com/600x600?text=No+Image', alt: product.name }];
 
@@ -362,7 +368,7 @@ const ProductDetails = () => {
                             {option.value}
                             {option.price > 0 && (
                               <span className="ml-1 text-xs">
-                                (+₹{option.price.toLocaleString('en-IN')})
+                                (+₹{(option.price / 100).toLocaleString('en-IN')})
                               </span>
                             )}
                           </button>
