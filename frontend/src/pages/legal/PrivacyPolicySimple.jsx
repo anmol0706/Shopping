@@ -10,7 +10,6 @@ const PrivacyPolicy = () => {
 
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
               Privacy Policy
@@ -24,7 +23,6 @@ const PrivacyPolicy = () => {
           </div>
 
           <div className="bg-white rounded-lg shadow-lg p-8 space-y-8">
-            {/* Introduction */}
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                 Introduction
@@ -34,22 +32,14 @@ const PrivacyPolicy = () => {
               </p>
             </section>
 
-            {/* Information We Collect */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <Database className="h-6 w-6 text-blue-600" />
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  Information We Collect
-                </h2>
-              </div>
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                Information We Collect
+              </h2>
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Personal Information</h3>
-                  <ul className="space-y-1 text-gray-600 dark:text-gray-400 text-sm">
+                  <h3 className="font-semibold text-gray-900 mb-2">Personal Information</h3>
+                  <ul className="space-y-1 text-gray-600 text-sm">
                     <li>• Name, email address, and phone number</li>
                     <li>• Billing and shipping addresses</li>
                     <li>• Payment information (processed securely by third parties)</li>
@@ -57,8 +47,8 @@ const PrivacyPolicy = () => {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Usage Information</h3>
-                  <ul className="space-y-1 text-gray-600 dark:text-gray-400 text-sm">
+                  <h3 className="font-semibold text-gray-900 mb-2">Usage Information</h3>
+                  <ul className="space-y-1 text-gray-600 text-sm">
                     <li>• Pages visited and time spent on our website</li>
                     <li>• Products viewed and purchased</li>
                     <li>• Search queries and browsing behavior</li>
@@ -66,21 +56,13 @@ const PrivacyPolicy = () => {
                   </ul>
                 </div>
               </div>
-            </motion.section>
+            </section>
 
-            {/* How We Use Information */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <Eye className="h-6 w-6 text-blue-600" />
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  How We Use Your Information
-                </h2>
-              </div>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                How We Use Your Information
+              </h2>
+              <ul className="space-y-2 text-gray-600">
                 <li>• Process and fulfill your orders</li>
                 <li>• Provide customer support and respond to inquiries</li>
                 <li>• Send order confirmations and shipping updates</li>
@@ -90,69 +72,48 @@ const PrivacyPolicy = () => {
                 <li>• Prevent fraud and ensure security</li>
                 <li>• Comply with legal obligations</li>
               </ul>
-            </motion.section>
+            </section>
 
-            {/* Information Sharing */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <Users className="h-6 w-6 text-blue-600" />
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  Information Sharing
-                </h2>
-              </div>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                Information Sharing
+              </h2>
+              <p className="text-gray-600 mb-4">
                 We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:
               </p>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+              <ul className="space-y-2 text-gray-600">
                 <li>• With service providers who help us operate our business</li>
                 <li>• With shipping companies to deliver your orders</li>
                 <li>• With payment processors to handle transactions</li>
                 <li>• When required by law or to protect our rights</li>
                 <li>• In connection with a business transfer or merger</li>
               </ul>
-            </motion.section>
+            </section>
 
-            {/* Data Security */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <Lock className="h-6 w-6 text-blue-600" />
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  Data Security
-                </h2>
-              </div>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                Data Security
+              </h2>
+              <p className="text-gray-600 mb-4">
                 We implement appropriate security measures to protect your personal information:
               </p>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+              <ul className="space-y-2 text-gray-600">
                 <li>• SSL encryption for data transmission</li>
                 <li>• Secure servers and databases</li>
                 <li>• Regular security audits and updates</li>
                 <li>• Limited access to personal information</li>
                 <li>• Employee training on data protection</li>
               </ul>
-            </motion.section>
+            </section>
 
-            {/* Your Rights */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                 Your Rights
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-gray-600 mb-4">
                 You have the following rights regarding your personal information:
               </p>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+              <ul className="space-y-2 text-gray-600">
                 <li>• Access and review your personal information</li>
                 <li>• Update or correct inaccurate information</li>
                 <li>• Delete your account and personal information</li>
@@ -160,82 +121,57 @@ const PrivacyPolicy = () => {
                 <li>• Request a copy of your data</li>
                 <li>• Object to certain processing activities</li>
               </ul>
-            </motion.section>
+            </section>
 
-            {/* Cookies */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-            >
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                 Cookies and Tracking
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-gray-600 mb-4">
                 We use cookies and similar technologies to enhance your experience:
               </p>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400">
+              <ul className="space-y-2 text-gray-600">
                 <li>• Essential cookies for website functionality</li>
                 <li>• Analytics cookies to understand usage patterns</li>
                 <li>• Preference cookies to remember your settings</li>
                 <li>• Marketing cookies for personalized advertising</li>
               </ul>
-              <p className="text-gray-600 dark:text-gray-400 mt-4">
+              <p className="text-gray-600 mt-4">
                 You can control cookie settings through your browser preferences.
               </p>
-            </motion.section>
+            </section>
 
-            {/* Children's Privacy */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6"
-            >
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+            <section className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 Children's Privacy
               </h2>
-              <p className="text-gray-700 dark:text-gray-300">
+              <p className="text-gray-700">
                 Our services are not intended for children under 18 years of age. We do not knowingly collect personal information from children under 18. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately.
               </p>
-            </motion.section>
+            </section>
 
-            {/* Changes to Policy */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-            >
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                 Changes to This Policy
               </h2>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600">
                 We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. We encourage you to review this Privacy Policy periodically for any changes.
               </p>
-            </motion.section>
+            </section>
 
-            {/* Contact Information */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0 }}
-              className="text-center pt-8 border-t border-gray-200 dark:border-gray-700"
-            >
-              <div className="flex items-center justify-center space-x-3 mb-4">
-                <Mail className="h-6 w-6 text-blue-600" />
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Questions about Privacy?
-                </h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <section className="text-center pt-8 border-t border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Questions about Privacy?
+              </h3>
+              <p className="text-gray-600 mb-4">
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
               </p>
-              <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <div className="space-y-1 text-sm text-gray-600">
                 <p>Email: privacy@shopease.com</p>
                 <p>Phone: +91 98765 43210</p>
                 <p>Address: 123 Business Street, Mumbai, Maharashtra 400001, India</p>
               </div>
-            </motion.section>
+            </section>
           </div>
         </div>
       </div>

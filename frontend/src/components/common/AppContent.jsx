@@ -24,7 +24,7 @@ import NotFound from '../../pages/NotFound';
 import ContactUs from '../../pages/legal/ContactUs';
 import ShippingPolicy from '../../pages/legal/ShippingPolicy';
 import TermsAndConditions from '../../pages/legal/TermsAndConditions';
-import PrivacyPolicy from '../../pages/legal/PrivacyPolicy';
+import PrivacyPolicy from '../../pages/legal/PrivacyPolicySimple';
 import CancellationRefunds from '../../pages/legal/CancellationRefunds';
 
 // Protected Route Component
