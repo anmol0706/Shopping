@@ -23,13 +23,23 @@ export const WishlistProvider = ({ children }) => {
   useEffect(() => {
     const savedWishlist = localStorage.getItem('wishlist');
     if (savedWishlist) {
-      setLocalWishlist(JSON.parse(savedWishlist));
+      try {
+        const parsedWishlist = JSON.parse(savedWishlist);
+        setLocalWishlist(Array.isArray(parsedWishlist) ? parsedWishlist : []);
+      } catch (error) {
+        console.warn('Failed to parse wishlist from localStorage:', error);
+        setLocalWishlist([]);
+      }
     }
   }, []);
 
   // Save wishlist to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('wishlist', JSON.stringify(localWishlist));
+    try {
+      localStorage.setItem('wishlist', JSON.stringify(localWishlist));
+    } catch (error) {
+      console.warn('Failed to save wishlist to localStorage:', error);
+    }
   }, [localWishlist]);
 
   // Fetch wishlist from server for authenticated users
@@ -47,13 +57,6 @@ export const WishlistProvider = ({ children }) => {
     enabled: !!user
   });
 
-  // Sync local wishlist with server when user logs in and has local items
-  useEffect(() => {
-    if (user && serverWishlist && localWishlist.length > 0) {
-      syncWishlistMutation.mutate();
-    }
-  }, [user, serverWishlist, localWishlist.length]);
-
   // Sync local wishlist with server
   const syncWishlistMutation = useMutation({
     mutationFn: async () => {
@@ -65,6 +68,13 @@ export const WishlistProvider = ({ children }) => {
       queryClient.invalidateQueries(['wishlist']);
     }
   });
+
+  // Sync local wishlist with server when user logs in and has local items
+  useEffect(() => {
+    if (user && serverWishlist && localWishlist.length > 0) {
+      syncWishlistMutation.mutate();
+    }
+  }, [user, serverWishlist, localWishlist.length]);
 
   // Add to wishlist mutation
   const addToWishlistMutation = useMutation({

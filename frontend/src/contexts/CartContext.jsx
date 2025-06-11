@@ -35,7 +35,11 @@ export const CartProvider = ({ children }) => {
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(localCart));
+    try {
+      localStorage.setItem('cart', JSON.stringify(localCart));
+    } catch (error) {
+      console.warn('Failed to save cart to localStorage:', error);
+    }
   }, [localCart]);
 
   // Fetch cart from server for authenticated users
@@ -53,13 +57,6 @@ export const CartProvider = ({ children }) => {
     enabled: !!user
   });
 
-  // Sync local cart with server when user logs in and has local items
-  useEffect(() => {
-    if (user && serverCart && localCart.length > 0) {
-      syncCartMutation.mutate();
-    }
-  }, [user, serverCart, localCart.length]);
-
   // Sync local cart with server
   const syncCartMutation = useMutation({
     mutationFn: async () => {
@@ -71,6 +68,13 @@ export const CartProvider = ({ children }) => {
       queryClient.invalidateQueries(['cart']);
     }
   });
+
+  // Sync local cart with server when user logs in and has local items
+  useEffect(() => {
+    if (user && serverCart && localCart.length > 0) {
+      syncCartMutation.mutate();
+    }
+  }, [user, serverCart, localCart.length]);
 
   // Add to cart mutation
   const addToCartMutation = useMutation({
