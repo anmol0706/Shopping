@@ -17,12 +17,11 @@ const Footer = () => {
     ],
     'Support': [
       { name: 'Contact Us', href: '/contact' },
-      { name: 'FAQ', href: '/faq' },
-      { name: 'Returns', href: '/returns' },
+      { name: 'Shipping Policy', href: '/shipping-policy' },
     ],
     'Legal': [
+      { name: 'Terms & Conditions', href: '/terms-and-conditions' },
       { name: 'Privacy Policy', href: '/privacy' },
-      { name: 'Terms of Service', href: '/terms' },
     ]
   };
 

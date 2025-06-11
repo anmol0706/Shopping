@@ -20,6 +20,13 @@ import Wishlist from '../../pages/Wishlist';
 import AdminPanel from '../../pages/admin/AdminPanel';
 import NotFound from '../../pages/NotFound';
 
+// Legal Pages
+import ContactUs from '../../pages/legal/ContactUs';
+import ShippingPolicy from '../../pages/legal/ShippingPolicy';
+import TermsAndConditions from '../../pages/legal/TermsAndConditions';
+import PrivacyPolicy from '../../pages/legal/PrivacyPolicy';
+import CancellationRefunds from '../../pages/legal/CancellationRefunds';
+
 // Protected Route Component
 import ProtectedRoute from './ProtectedRoute';
 import AdminRoute from './AdminRoute';
@@ -52,6 +59,13 @@ const AppContent = () => {
 
           {/* Checkout Route - Allow guest checkout */}
           <Route path="/checkout" element={<Checkout />} />
+
+          {/* Legal Pages */}
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/shipping-policy" element={<ShippingPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/cancellation-refunds" element={<CancellationRefunds />} />
 
           {/* Protected Routes */}
           <Route path="/profile" element={
